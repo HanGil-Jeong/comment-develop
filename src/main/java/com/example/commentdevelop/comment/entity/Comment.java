@@ -4,6 +4,7 @@ import com.example.commentdevelop.comment.dto.request.CreateCommentRequestDto;
 import com.example.commentdevelop.comment.dto.request.UpdateCommentRequestDto;
 import com.example.commentdevelop.common.entity.BaseEntity;
 import com.example.commentdevelop.reply.entity.Reply;
+import com.example.commentdevelop.schedule.dto.request.UpdateScheduleRequestDto;
 import com.example.commentdevelop.schedule.entity.Schedule;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
