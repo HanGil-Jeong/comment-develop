@@ -9,6 +9,10 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
 
     List<Comment> findByScheduleId(Long scheduleId);
 
+    default Comment findByIdOrElseThrow(Long commentId) {
+        return findById(commentId).orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+    }
+
     int countCommentByScheduleId(Long scheduleId);
 
 }
