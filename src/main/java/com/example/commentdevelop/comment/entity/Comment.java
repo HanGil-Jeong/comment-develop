@@ -37,7 +37,8 @@ public class Comment extends BaseEntity {
     @JoinColumn
     private Schedule schedule;
 
-    public Comment(CreateCommentRequestDto requestDto) {
+    public Comment(Schedule schedule, CreateCommentRequestDto requestDto) {
+        this.schedule=schedule;
         this.comment = requestDto.getComment();
     }
 

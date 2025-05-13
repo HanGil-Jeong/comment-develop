@@ -1,13 +1,18 @@
 package com.example.commentdevelop.schedule.service;
 
+import com.example.commentdevelop.comment.dto.response.CommentResponseDto;
+import com.example.commentdevelop.comment.entity.Comment;
+import com.example.commentdevelop.comment.repository.CommentRepository;
 import com.example.commentdevelop.schedule.dto.request.CreateScheduleRequestDto;
 import com.example.commentdevelop.schedule.dto.request.UpdateScheduleRequestDto;
+import com.example.commentdevelop.schedule.dto.response.GetScheduleWhitCommentResponseDto;
 import com.example.commentdevelop.schedule.dto.response.ScheduleResponseDto;
 import com.example.commentdevelop.schedule.dto.response.UpdateScheduleResponseDto;
 import com.example.commentdevelop.schedule.entity.Schedule;
 import com.example.commentdevelop.schedule.repository.ScheduleRepository;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class ScheduleService {
 
     private final ScheduleRepository scheduleRepository;
+    private final CommentRepository commentRepository;
 
     @Transactional
     public ScheduleResponseDto createSchedule(CreateScheduleRequestDto requestDto) {
@@ -35,12 +41,18 @@ public class ScheduleService {
     }
 
     @Transactional
-    public ScheduleResponseDto getSchedule(Long id) {
+    public GetScheduleWhitCommentResponseDto getSchedule(Long id) {
 
         Schedule schedule = scheduleRepository.findById(id)
             .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
 
-        return ScheduleResponseDto.toDto(schedule);
+        List<Comment> comments = commentRepository.findByScheduleId(id);
+
+        List<CommentResponseDto> commentResponseDtoList = comments.stream()
+            .map(CommentResponseDto::toDto)
+            .collect(Collectors.toList());
+
+        return GetScheduleWhitCommentResponseDto.from(schedule, commentResponseDtoList);
     }
 
     @Transactional

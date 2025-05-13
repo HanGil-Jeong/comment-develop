@@ -31,7 +31,7 @@ public class CommentService {
         Schedule schedule = scheduleRepository.findById(scheduleId)
             .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
 
-        Comment comment = commentRepository.save(new Comment(requestDto));
+        Comment comment = commentRepository.save(new Comment(schedule, requestDto));
 
         return CommentResponseDto.toDto(comment);
     }
