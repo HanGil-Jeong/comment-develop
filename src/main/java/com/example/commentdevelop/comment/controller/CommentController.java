@@ -5,6 +5,7 @@ import com.example.commentdevelop.comment.dto.request.UpdateCommentRequestDto;
 import com.example.commentdevelop.comment.dto.response.CommentResponseDto;
 import com.example.commentdevelop.comment.dto.response.UpdateCommentResponseDto;
 import com.example.commentdevelop.comment.service.CommentService;
+import com.example.commentdevelop.schedule.dto.request.UpdateScheduleRequestDto;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
