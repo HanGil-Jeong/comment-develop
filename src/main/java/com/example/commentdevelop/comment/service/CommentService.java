@@ -28,8 +28,7 @@ public class CommentService {
         CreateCommentRequestDto requestDto
     ) {
 
-        Schedule schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
         Comment comment = commentRepository.save(new Comment(schedule, requestDto));
 
@@ -39,8 +38,7 @@ public class CommentService {
     @Transactional
     public List<CommentResponseDto> getCommentList(Long scheduleId) {
 
-        Schedule schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
         return commentRepository.findAll()
             .stream()
@@ -51,11 +49,9 @@ public class CommentService {
     @Transactional
     public CommentResponseDto getComment(Long scheduleId, Long commentId) {
 
-        Schedule schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
-        Comment comment = commentRepository.findById(commentId)
-            .orElseThrow(()-> new RuntimeException("댓글을 찾을 수 없습니다."));
+        Comment comment = commentRepository.findByIdOrElseThrow(commentId);
 
         return CommentResponseDto.toDto(comment);
 
@@ -65,11 +61,9 @@ public class CommentService {
     public UpdateCommentResponseDto updateComment(Long scheduleId, Long commentId,
         UpdateCommentRequestDto requestDto) {
 
-        Schedule schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
-        Comment comment = commentRepository.findById(commentId)
-            .orElseThrow(()-> new RuntimeException("댓글을 찾을 수 없습니다."));
+        Comment comment = commentRepository.findByIdOrElseThrow(commentId);
 
         comment.updateComment(requestDto);
 
@@ -79,11 +73,9 @@ public class CommentService {
     @Transactional
     public void deleteComment(Long scheduleId, Long commentId) {
 
-        Schedule schedule = scheduleRepository.findById(scheduleId)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
-        Comment comment = commentRepository.findById(commentId)
-            .orElseThrow(()-> new RuntimeException("댓글을 찾을 수 없습니다."));
+        Comment comment = commentRepository.findByIdOrElseThrow(commentId);
 
         commentRepository.delete(comment);
 

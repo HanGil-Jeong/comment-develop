@@ -2,7 +2,6 @@ package com.example.commentdevelop.schedule.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Getter

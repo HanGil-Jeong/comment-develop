@@ -43,8 +43,7 @@ public class ScheduleService {
     @Transactional
     public GetScheduleWhitCommentResponseDto getSchedule(Long id) {
 
-        Schedule schedule = scheduleRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(id);
 
         List<Comment> comments = commentRepository.findByScheduleId(id);
 
@@ -58,8 +57,7 @@ public class ScheduleService {
     @Transactional
     public UpdateScheduleResponseDto updateSchedule(Long id, UpdateScheduleRequestDto requestDto) {
 
-        Schedule schedule = scheduleRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(id);
 
         schedule.updateSchedule(requestDto);
 
@@ -69,8 +67,7 @@ public class ScheduleService {
     @Transactional
     public void deleteSchedule(Long id) {
 
-        Schedule schedule = scheduleRepository.findById(id)
-            .orElseThrow(()-> new RuntimeException("일정을 찾을 수 없습니다."));
+        Schedule schedule = scheduleRepository.findByIdOrElseThrow(id);
 
         scheduleRepository.delete(schedule);
     }
