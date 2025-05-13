@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/schedeules/{scheduleId}/comments")
+@RequestMapping("/schedules/{scheduleId}/comments")
 public class CommentController {
 
     private final CommentService commentService;
 
     @PostMapping
     public ResponseEntity<CommentResponseDto> createComment(
-        @PathVariable Long scheduleId,
+        @PathVariable("scheduleId") Long scheduleId,
         @RequestBody CreateCommentRequestDto requestDto
     ) {
         CommentResponseDto commentResponseDto = commentService.createComment(scheduleId, requestDto);
@@ -37,7 +37,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CommentResponseDto>> getCommentList(@PathVariable Long scheduleId) {
+    public ResponseEntity<List<CommentResponseDto>> getCommentList(@PathVariable("scheduleId") Long scheduleId) {
 
         List<CommentResponseDto> commentList = commentService.getCommentList(scheduleId);
 
@@ -46,8 +46,8 @@ public class CommentController {
 
     @GetMapping("/{commentId}")
     public ResponseEntity<CommentResponseDto> getComment(
-        @PathVariable Long scheduleId,
-        @PathVariable Long commentId
+        @PathVariable("scheduleId") Long scheduleId,
+        @PathVariable("commentId") Long commentId
     ) {
         CommentResponseDto comment = commentService.getComment(scheduleId, commentId);
 
@@ -56,8 +56,8 @@ public class CommentController {
 
     @PatchMapping("/{commentId}")
     public ResponseEntity<UpdateCommentResponseDto> updateComment(
-        @PathVariable Long scheduleId,
-        @PathVariable Long commentId,
+        @PathVariable("scheduleId") Long scheduleId,
+        @PathVariable("commentId") Long commentId,
         @RequestBody UpdateCommentRequestDto requestDto
         ) {
 
@@ -69,8 +69,8 @@ public class CommentController {
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(
-        @PathVariable Long scheduleId,
-        @PathVariable Long commentId
+        @PathVariable("scheduleId") Long scheduleId,
+        @PathVariable("commentId") Long commentId
     ) {
         commentService.deleteComment(scheduleId, commentId);
 

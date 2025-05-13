@@ -1,14 +1,16 @@
 package com.example.commentdevelop.schedule.dto.request;
 
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
-@RequiredArgsConstructor
+@Setter
+@NoArgsConstructor
 public class UpdateScheduleRequestDto {
 
-    private final String title;
+    private String title;
 
-    private final String content;
+    private String content;
 
 }

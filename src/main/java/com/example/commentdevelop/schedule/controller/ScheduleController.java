@@ -2,9 +2,11 @@ package com.example.commentdevelop.schedule.controller;
 
 import com.example.commentdevelop.schedule.dto.request.CreateScheduleRequestDto;
 import com.example.commentdevelop.schedule.dto.request.UpdateScheduleRequestDto;
+import com.example.commentdevelop.schedule.dto.response.GetScheduleWhitCommentResponseDto;
 import com.example.commentdevelop.schedule.dto.response.ScheduleResponseDto;
 import com.example.commentdevelop.schedule.dto.response.UpdateScheduleResponseDto;
 import com.example.commentdevelop.schedule.service.ScheduleService;
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/schedeules")
+@RequestMapping("/schedules")
 public class ScheduleController {
 
     private final ScheduleService scheduleService;
@@ -28,7 +30,7 @@ public class ScheduleController {
     @PostMapping
     public ResponseEntity<ScheduleResponseDto> createSchedule(
         // 요청 데이터 받기
-        @RequestBody CreateScheduleRequestDto requestDto) {
+        @Valid @RequestBody CreateScheduleRequestDto requestDto) {
 
         // 요청 데이터 Service에 넘기기
         ScheduleResponseDto schedule = scheduleService.createSchedule(requestDto);
@@ -46,17 +48,17 @@ public class ScheduleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ScheduleResponseDto> getSchedule(@PathVariable Long id) {
+    public ResponseEntity<GetScheduleWhitCommentResponseDto> getSchedule(@PathVariable("id") Long id) {
 
-        ScheduleResponseDto schedule = scheduleService.getSchedule(id);
+        GetScheduleWhitCommentResponseDto schedule = scheduleService.getSchedule(id);
 
         return new ResponseEntity<>(schedule, HttpStatus.OK);
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<UpdateScheduleResponseDto> updateSchedule(
-        @PathVariable Long id,
-        @RequestBody UpdateScheduleRequestDto requestDto) {
+        @PathVariable("id") Long id,
+        @Valid @RequestBody UpdateScheduleRequestDto requestDto) {
 
         UpdateScheduleResponseDto updatedScheduleResponseDto = scheduleService.updateSchedule(id, requestDto);
 
@@ -64,7 +66,7 @@ public class ScheduleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSchedule(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteSchedule(@PathVariable("id") Long id) {
 
         scheduleService.deleteSchedule(id);
 
