@@ -37,6 +37,9 @@ public class Schedule extends BaseEntity {
     private String content;
 
     @Column(nullable = false)
+    private int commentCnt;
+
+    @Column(nullable = false)
     private Long writerId;
 
     @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -51,5 +54,15 @@ public class Schedule extends BaseEntity {
     public void updateSchedule(UpdateScheduleRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+    }
+
+    public void increaseCommentCnt() {
+        this.commentCnt++;
+    }
+
+    public void decreaseCommentCnt() {
+        if(commentCnt > 0) {
+            this.commentCnt--;
+        }
     }
 }
