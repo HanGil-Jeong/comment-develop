@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 public class UpdateCommentRequestDto {
 
     @NotBlank(message = "댓글 내용은 필수입니다")
-    @Column(nullable = false)
     private final String comment;
 
 }

@@ -28,11 +28,9 @@ public class Schedule extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "일정 제목은 필수입니다")
     @Column(nullable = false)
     private String title;
 
-    @NotBlank(message = "일정 내용은 필수입니다")
     @Column(nullable = false)
     private String content;
 

@@ -4,6 +4,7 @@ import com.example.commentdevelop.comment.entity.Comment;
 import com.example.commentdevelop.common.entity.BaseEntity;
 import com.example.commentdevelop.reply.dto.request.ReplyRequestDto;
 import com.example.commentdevelop.schedule.entity.Schedule;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -27,7 +28,7 @@ public class Reply extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "대댓글을 입력하세요")
+    @Column(nullable = false)
     private String reply;
 
     @ManyToOne(fetch = FetchType.LAZY)

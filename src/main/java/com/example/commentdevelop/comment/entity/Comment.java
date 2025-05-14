@@ -34,7 +34,6 @@ public class Comment extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "댓글은 필수값입니다.")
     @Column(nullable = false)
     private String comment;
 
