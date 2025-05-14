@@ -7,8 +7,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UpdateScheduleRequestDto {
 
-    private final String title;
+    private String title;
 
-    private final String content;
+    private String content;
 
 }

@@ -1,23 +1,26 @@
 package com.example.commentdevelop.schedule.entity;
 
+import com.example.commentdevelop.comment.entity.Comment;
 import com.example.commentdevelop.common.entity.BaseEntity;
 import com.example.commentdevelop.schedule.dto.request.CreateScheduleRequestDto;
 import com.example.commentdevelop.schedule.dto.request.UpdateScheduleRequestDto;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "schedule")
 public class Schedule extends BaseEntity {
 
@@ -33,9 +36,14 @@ public class Schedule extends BaseEntity {
     @Column(nullable = false)
     private String content;
 
-    @NotBlank(message = "작성자ID는 필수입니다.")
+    @Column(nullable = false)
+    private int commentCnt;
+
     @Column(nullable = false)
     private Long writerId;
+
+    @OneToMany(mappedBy = "schedule", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments = new ArrayList<>();
 
     public Schedule(CreateScheduleRequestDto requestDto) {
         this.title = requestDto.getTitle();
@@ -46,5 +54,15 @@ public class Schedule extends BaseEntity {
     public void updateSchedule(UpdateScheduleRequestDto requestDto) {
         this.title = requestDto.getTitle();
         this.content = requestDto.getContent();
+    }
+
+    public void increaseCommentCnt() {
+        this.commentCnt++;
+    }
+
+    public void decreaseCommentCnt() {
+        if(commentCnt > 0) {
+            this.commentCnt--;
+        }
     }
 }
