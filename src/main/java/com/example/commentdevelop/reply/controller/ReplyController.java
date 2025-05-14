@@ -28,8 +28,8 @@ public class ReplyController {
 
     @PostMapping
     public ResponseEntity<ReplyResponseDto> createReply(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId,
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId,
         @Valid @RequestBody ReplyRequestDto requestDto
     ) {
         ReplyResponseDto replyResponseDto = replyService.createReply(scheduleId, commentId, requestDto);
@@ -39,7 +39,7 @@ public class ReplyController {
 
     @GetMapping
     public ResponseEntity<GetReplyListWithCommentResponseDto> getReplies(
-        @PathVariable("commentId") Long commentId) {
+        @PathVariable Long commentId) {
 
         GetReplyListWithCommentResponseDto replies = replyService.getReplies(commentId);
 
@@ -48,9 +48,9 @@ public class ReplyController {
 
     @PatchMapping("/{replyId}")
     public ResponseEntity<UpdateReplyResponseDto> updateReply(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId,
-        @PathVariable("replyId") Long replyId,
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId,
+        @PathVariable Long replyId,
         @Valid @RequestBody ReplyRequestDto requestDto
     ) {
         UpdateReplyResponseDto updateReplyResponseDto = replyService.updateReply(scheduleId,
@@ -61,9 +61,9 @@ public class ReplyController {
 
     @DeleteMapping("/{replyId}")
     public ResponseEntity<Void> deleteReply(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId,
-        @PathVariable("replyId") Long replyId
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId,
+        @PathVariable Long replyId
     ) {
         replyService.deleteReply(scheduleId, commentId, replyId);
 

@@ -20,7 +20,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "reply")
 public class Reply extends BaseEntity {
 

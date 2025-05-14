@@ -28,7 +28,7 @@ public class CommentController {
 
     @PostMapping
     public ResponseEntity<CommentResponseDto> createComment(
-        @PathVariable("scheduleId") Long scheduleId,
+        @PathVariable Long scheduleId,
         @RequestBody CreateCommentRequestDto requestDto
     ) {
         CommentResponseDto commentResponseDto = commentService.createComment(scheduleId, requestDto);
@@ -37,7 +37,7 @@ public class CommentController {
     }
 
     @GetMapping
-    public ResponseEntity<List<CommentResponseDto>> getCommentList(@PathVariable("scheduleId") Long scheduleId) {
+    public ResponseEntity<List<CommentResponseDto>> getCommentList(@PathVariable Long scheduleId) {
 
         List<CommentResponseDto> commentList = commentService.getCommentList(scheduleId);
 
@@ -46,8 +46,8 @@ public class CommentController {
 
     @GetMapping("/{commentId}")
     public ResponseEntity<CommentResponseDto> getComment(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId
     ) {
         CommentResponseDto comment = commentService.getComment(scheduleId, commentId);
 
@@ -56,8 +56,8 @@ public class CommentController {
 
     @PatchMapping("/{commentId}")
     public ResponseEntity<UpdateCommentResponseDto> updateComment(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId,
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId,
         @RequestBody UpdateCommentRequestDto requestDto
         ) {
 
@@ -69,8 +69,8 @@ public class CommentController {
 
     @DeleteMapping("/{commentId}")
     public ResponseEntity<Void> deleteComment(
-        @PathVariable("scheduleId") Long scheduleId,
-        @PathVariable("commentId") Long commentId
+        @PathVariable Long scheduleId,
+        @PathVariable Long commentId
     ) {
         commentService.deleteComment(scheduleId, commentId);
 

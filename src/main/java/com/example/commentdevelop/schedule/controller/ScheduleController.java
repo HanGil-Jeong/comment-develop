@@ -48,7 +48,7 @@ public class ScheduleController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GetScheduleWhitCommentResponseDto> getSchedule(@PathVariable("id") Long id) {
+    public ResponseEntity<GetScheduleWhitCommentResponseDto> getSchedule(@PathVariable Long id) {
 
         GetScheduleWhitCommentResponseDto schedule = scheduleService.getSchedule(id);
 
@@ -57,7 +57,7 @@ public class ScheduleController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<UpdateScheduleResponseDto> updateSchedule(
-        @PathVariable("id") Long id,
+        @PathVariable Long id,
         @Valid @RequestBody UpdateScheduleRequestDto requestDto) {
 
         UpdateScheduleResponseDto updatedScheduleResponseDto = scheduleService.updateSchedule(id, requestDto);
@@ -66,7 +66,7 @@ public class ScheduleController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSchedule(@PathVariable("id") Long id) {
+    public ResponseEntity<Void> deleteSchedule(@PathVariable Long id) {
 
         scheduleService.deleteSchedule(id);
 
