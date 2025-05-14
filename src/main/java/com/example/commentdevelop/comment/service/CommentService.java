@@ -30,6 +30,8 @@ public class CommentService {
 
         Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
+        schedule.increaseCommentCnt();
+
         Comment comment = commentRepository.save(new Comment(schedule, requestDto));
 
         return CommentResponseDto.toDto(comment);
@@ -76,6 +78,8 @@ public class CommentService {
         Schedule schedule = scheduleRepository.findByIdOrElseThrow(scheduleId);
 
         Comment comment = commentRepository.findByIdOrElseThrow(commentId);
+
+        schedule.decreaseCommentCnt();
 
         commentRepository.delete(comment);
 

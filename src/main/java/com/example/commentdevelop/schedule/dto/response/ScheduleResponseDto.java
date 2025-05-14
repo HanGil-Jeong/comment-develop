@@ -15,6 +15,8 @@ public class ScheduleResponseDto {
 
     private final String content;
 
+    private final int commentCnt;
+
     private final LocalDateTime createdAt;
 
     private final LocalDateTime updatedAt;
@@ -26,6 +28,7 @@ public class ScheduleResponseDto {
             schedule.getId(),
             schedule.getTitle(),
             schedule.getContent(),
+            schedule.getCommentCnt(),
             schedule.getCreatedAt(),
             schedule.getUpdatedAt(),
             schedule.getWriterId()
