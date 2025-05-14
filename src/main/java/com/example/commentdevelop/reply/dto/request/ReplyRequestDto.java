@@ -1,14 +1,12 @@
 package com.example.commentdevelop.reply.dto.request;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-@Setter
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class ReplyRequestDto {
 
-    private String reply;
+    private final String reply;
 
 }

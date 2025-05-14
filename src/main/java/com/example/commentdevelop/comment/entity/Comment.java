@@ -26,7 +26,6 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "comment")
 public class Comment extends BaseEntity {
 
